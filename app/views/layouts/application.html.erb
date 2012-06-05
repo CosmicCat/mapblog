@@ -8,6 +8,43 @@
 </head>
 <body>
 
+<%
+   nav_links = [
+      [ "index", "Home", ],
+      [ "backpacking", "Backpacking", ],
+      [ "software", "Software", ],
+      [ "games", "Games", ],
+      [ "about", "About", ],
+      [ "contact", "Contact", ],
+   ]
+  # in the short term, this will work. In the long term, evil
+  # javascript seems more appropriate
+  highlight_me = params['action']
+
+%>
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/">Matthew Alan Phillips</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <% nav_links.each do |pair| %>
+            <li <%= (highlight_me == pair[0]) ? 'class="active"'.html_safe : '' %> >
+	        <a href="<%= pair[0] %>"><%= pair[1] %></a>
+            </li>
+	  <% end %>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
 <%= yield %>
 
 </body>
