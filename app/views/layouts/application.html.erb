@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mapblog</title>
+  <title>mapblog</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -9,18 +9,19 @@
 <body>
 
 <%
+   # if I am cool, I will generate the content to remove the #'s here
    nav_links = [
       [ "index", "Home", ],
-      [ "backpacking", "Backpacking", ],
-      [ "software", "Software", ],
-      [ "games", "Games", ],
-      [ "about", "About", ],
-      [ "contact", "Contact", ],
+      [ "posts", "Blog", ],
+#      [ "backpacking", "Backpacking", ],
+#      [ "software", "Software", ],
+#      [ "games", "Games", ],
+#      [ "about", "About", ],
+#      [ "contact", "Contact", ],
    ]
-  # in the short term, this will work. In the long term, evil
-  # javascript seems more appropriate
-  highlight_me = params['action']
 
+  # used to highlight nav location
+  highlight_me = request.fullpath;
 %>
 
 <div class="navbar navbar-fixed-top">
@@ -35,7 +36,7 @@
       <div class="nav-collapse">
         <ul class="nav">
           <% nav_links.each do |pair| %>
-            <li <%= (highlight_me == pair[0]) ? 'class="active"'.html_safe : '' %> >
+            <li <%= (Regexp.new(pair[0]).match(highlight_me)) ? 'class="active"'.html_safe : '' %> >
 	        <a href="<%= pair[0] %>"><%= pair[1] %></a>
             </li>
 	  <% end %>

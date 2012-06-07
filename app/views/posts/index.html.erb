@@ -1,0 +1,28 @@
+<style type="text/css">
+      /* otherwise stuff gets hidden under the top nav */
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="span2">
+      <ul class="nav nav-pills nav-stacked">
+	<% 6.times do %>
+	<li><a href="#">sidebar</a></li>
+	<% end %>
+	<li class="active"><a href="#">active sidebar</a></li>
+	<% 4.times do %>
+	<li><a href="#">sidebar</a></li>
+	<% end %>
+      </ul>
+    </div>
+    <div class="span10">
+      <% 10.times do %>
+      content
+      <% end %>
+    </div>
+  </div>
+</div>
