@@ -10,6 +10,7 @@
   <div class="row">
     <div class="span2">
       <ul class="nav nav-pills nav-stacked">
+	<p><h4>Previous Posts</h4></p>
 	<% @posts.each do |post| %>
 	<li><a href="#"><%= post.title %></a></li>
 	<% end %>
@@ -17,10 +18,10 @@
     </div>
     <div class="span10">
       <div class="page-header">
-        <h1>Example page header</h1>
+        <h1>Blog Posts</h1>
       </div>
       <% @posts.each do |post| %>
-      <p><%= post.body %></p>
+      <%= render :partial => "shared/single_post", :locals => {:post => post } %>
       <br />
       <% end %>
     </div>
