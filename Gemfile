@@ -21,6 +21,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'rails-asset-jqueryui'
 gem 'thin'
 
 # To use ActiveModel has_secure_password

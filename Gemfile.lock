@@ -71,6 +71,8 @@ GEM
       activesupport (= 3.2.5)
       bundler (~> 1.0)
       railties (= 3.2.5)
+    rails-asset-jqueryui (0.0.3)
+      jquery-rails
     railties (3.2.5)
       actionpack (= 3.2.5)
       activesupport (= 3.2.5)
@@ -112,6 +114,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   jquery-rails
   rails (= 3.2.5)
+  rails-asset-jqueryui
   sass-rails (~> 3.2.3)
   sqlite3
   thin
