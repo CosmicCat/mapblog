@@ -1,0 +1,211 @@
+<style type="text/css">
+#gallery {
+	margin-top:10px;
+}
+
+#images {
+	display:none;
+}
+
+.panel {
+	float:left;
+	border:12px solid #111;
+  background-color:#555;
+	border-right:none;
+}
+
+ul.exposureThumbs {
+	background:#111;
+	border-bottom:22px solid #111;
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+
+ul.exposureThumbs li {
+	margin:0 0 12px 0;
+	padding:0;
+	text-align:center;
+	display:none;
+}
+
+ul.exposureThumbs li img {
+	cursor:pointer;
+}
+
+ul.exposureThumbs li.last {
+	margin:0;
+}
+
+.exposureTarget {
+	width:800px;
+	height:600px;
+	background-color:#111;
+	background-image:url(res/loader.gif);
+	background-repeat:no-repeat;
+	background-position:center center;
+	float:left;
+	padding:0;
+	margin:0;
+	border:12px solid #111;
+	position:relative;
+	overflow:hidden;
+}
+
+.exposureWrapper {
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+.exposureWrapper img {
+	cursor:pointer;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+.exposureLoaded {
+	background-image:none;
+}
+
+.exposureData {
+	position:absolute;
+ 	left:0;
+ 	right:0;
+ 	bottom:0;
+	height:20px;
+	padding:7px;
+	background-image:url(/assets/veil.png);
+	color:#fff;
+	font-family:Arial,Verdana,Helvetica,sans-serif;
+	font-size:13px;
+	font-weight:bold;
+}
+
+ul.exposureThumbs li {
+	width:150px;
+	height:79px;
+}
+
+.exposureSlideshowControls a,
+.exposureControls span,
+.exposureControls a {
+	font-family:Arial,Verdana,Helvetica,sans-serif;
+	font-size:11px;
+	padding:8px;
+	background-color:#555;
+	display:block;
+	float:left;
+}
+
+.exposureSlideshowControls a,
+.exposureControls a {
+	color:#ccc;
+	text-decoration:none;
+	outline:none;
+}
+
+.exposureSlideshowControls a:active,
+.exposureSlideshowControls a:hover,
+.exposureControls a:active,
+.exposureControls a:hover {
+	background-color:#444;
+	color:#ddd;
+}
+
+.exposurePaging .active {
+	color:#fff;
+	background-color:#111;
+}
+
+.clear {
+	clear:both;
+}
+
+p.info {
+	margin:40px auto;
+	text-align:center;
+	width:600px;
+}
+
+p.info a {
+	color:#006fc0;
+}
+
+p.info a:hover, p.info a:active {
+	color:#0084e7;
+}
+
+</style>
+
+<script type="text/javascript">
+	$(function(){
+		var gallery = $('#images');
+		gallery.exposure({
+	    slideshowDelay : 4000,
+	    autostartSlideshow : true,
+	    controlsTarget : '#controls',
+			controls : { prevNext : true, pageNumbers : true, firstLast : false },
+			visiblePages : 3,
+			slideshowControlsTarget : '#slideshow',
+			onThumb : function(thumb) {
+				var li = thumb.parents('li');
+				var fadeTo = li.hasClass($.exposure.activeThumbClass) ? 1 : 0.3;
+
+				thumb.css({display : 'none', opacity : fadeTo}).stop().fadeIn(200);
+
+				thumb.hover(function() {
+					thumb.fadeTo('fast',1);
+				}, function() {
+					li.not('.' + $.exposure.activeThumbClass).children('img').fadeTo('fast', 0.3);
+				});
+			},
+			onImage : function(image, imageData, thumb) {
+				// Fade out the previous image.
+				image.siblings('.' + $.exposure.lastImageClass).stop().fadeOut(500, function() {
+					$(this).remove();
+				});
+
+				// Fade in the current image.
+				image.hide().stop().fadeIn(1000);
+
+				// Fade in selected thumbnail (and fade out others).
+				if (gallery.showThumbs && thumb && thumb.length) {
+					thumb.parents('li').siblings().children('img.' + $.exposure.selectedImageClass).stop().fadeTo(200, 0.3, function() { $(this).removeClass($.exposure.selectedImageClass); });
+					thumb.fadeTo('fast', 1).addClass($.exposure.selectedImageClass);
+				}
+			},
+			onPageChanged : function() {
+				// Fade in thumbnails on current page.
+				gallery.find('li.' + $.exposure.currentThumbClass).hide().stop().fadeIn('fast');
+			}
+		});
+	});
+</script>
+
+
+<div class="container" style="margin-top:80px">
+  <h1>Backpacking</h1>
+	<div id="gallery">
+		<div class="panel">
+			<ul id="images">
+<% @files.each do |x| %>
+				<li><a href="<%= x[:path] %>">
+					<img src="<%= x[:thumb] %>" title="<%= x[:caption] %>" />
+				</a></li>
+<% end %>
+			</ul>
+			<div id="controls"></div>
+			<div class="clear"></div>
+			<div id="slideshow"></div>
+		</div>
+		<div id="exposure"></div>
+		<div class="clear"></div>
+	</div>
+
+	<p>
+		These pictures are from my 5 month thru-hike of the entire 2650 mile
+		Pacific Crest Trail in 2011. For more information click here.
+	</p>
+</div>
