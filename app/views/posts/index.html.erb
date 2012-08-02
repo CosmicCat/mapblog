@@ -12,7 +12,7 @@
       <ul class="nav nav-pills nav-stacked">
 	<p><h4>Previous Posts</h4></p>
 	<% @posts.each do |post| %>
-	<li><a href="#"><%= post.title %></a></li>
+	<li><a href="#"><%= post[:title] %></a></li>
 	<% end %>
       </ul>
     </div>
