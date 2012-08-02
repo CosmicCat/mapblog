@@ -27,6 +27,8 @@ class PostsController < ApplicationController
     post = {}
     open(post_filename) {|f|
       post[:title] = f.readline
+      post[:title].gsub!(' ', '&nbsp;')
+      post[:title] = post[:title].html_safe
       post[:post_date] = f.readline
       post[:content] = f.read.html_safe
     }
@@ -34,4 +36,3 @@ class PostsController < ApplicationController
   end
 
 end
-
