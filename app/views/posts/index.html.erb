@@ -12,7 +12,8 @@
       <ul class="nav nav-pills nav-stacked">
 	<p><h4>Post History</h4></p>
 	<% @posts.each do |post| %>
-	<li><%= post.generate_link() %></li>
+	<% active = @current_post_no.present? && @current_post_no == post.id ? ' class="active" '.html_safe : '' %>
+	<li <%= active %> ><%= post.generate_link() %></li>
 	<% end %>
       </ul>
     </div>
