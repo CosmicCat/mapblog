@@ -27,11 +27,9 @@
   <div class="navbar-inner">
     <div class="container">
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <% nav_links.each do %>
+          <span class="icon-bar"></span>
+	      <% end %>
       </a>
       <a class="brand" href="/">Matthew Alan Phillips</a>
       <div class="nav-collapse">
@@ -40,7 +38,7 @@
             <li <%= (Regexp.new(pair[0]).match(highlight_me)) ? 'class="active"'.html_safe : '' %> >
 	        <a href="<%= pair[0] %>"><%= pair[1] %></a>
             </li>
-	  <% end %>
+	        <% end %>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
