@@ -12,11 +12,11 @@
 
 <%
    nav_links = [
-      [ "index", "Home", ],
-      [ "posts", "Blog", ],
-      [ "backpacking", "Backpacking", ],
-      [ "software", "Software", ],
-      [ "games", "Games", ],
+      [ "/index", "Home", ],
+      [ "/posts", "Blog", ],
+      [ "/backpacking", "Backpacking", ],
+      [ "/software", "Software", ],
+      [ "/games", "Games", ],
    ]
 
   # used to highlight nav location
@@ -36,7 +36,7 @@
         <ul class="nav">
           <% nav_links.each do |pair| %>
             <li <%= (Regexp.new(pair[0]).match(highlight_me)) ? 'class="active"'.html_safe : '' %> >
-	        <a href="<%= pair[0] %>"><%= pair[1] %></a>
+	            <a href="<%= pair[0] %>"><%= pair[1] %></a>
             </li>
 	        <% end %>
         </ul>
