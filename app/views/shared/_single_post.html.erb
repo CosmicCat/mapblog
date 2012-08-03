@@ -1,6 +1,13 @@
+<style>
+  .blogcontent {
+    font-size: 1em
+  }
+</style>
 <div class="row">
-  <div class="span6"><h2><%= post.title %></h2></div>
-  <div class="span3"><%= post.created_at %></div>
+  <div class="span6"><h2><%= post[:title] %></h2></div>
+  <div class="span3"><%= post[:post_date] %></div>
 </div>
 <br />
-<p><%= post.body %></p>
+<div class="blogcontent">
+<%= post[:content] %>
+</div>
