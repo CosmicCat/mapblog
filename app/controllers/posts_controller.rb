@@ -7,6 +7,12 @@ class PostsController < ApplicationController
     slurp_up_posts()
   end
 
+  def show
+    slurp_up_posts()
+    @current_post_no = params[:id]
+    @current_post = @posts.find{|x| x[:post_no] = @current_post_no}
+  end
+
   def slurp_up_posts()
     @posts = []
     # for now, assume everything in the dir is a post
