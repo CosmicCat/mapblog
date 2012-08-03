@@ -9,7 +9,9 @@ Mapblog::Application.routes.draw do
   match '/backpacking' => 'backpacking#index'
 
   # static views
-  match ':action' => 'static#:action'
+  %w{ software games index }.each {|action|
+    match action => "static##{action}"
+  }
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
