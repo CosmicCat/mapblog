@@ -48,7 +48,6 @@ ul.exposureThumbs li.last {
 	width:800px;
 	height:600px;
 	background-color:#111;
-	background-image:url(res/loader.gif);
 	background-repeat:no-repeat;
 	background-position:center center;
 	float:left;
@@ -151,6 +150,7 @@ p.info a:hover, p.info a:active {
 		var gallery = $('#images');
 		gallery.exposure({
 	    slideshowDelay : 4000,
+	    keyboardNavigation : false,
 	    autostartSlideshow : true,
 	    controlsTarget : '#controls',
 			controls : { prevNext : true, pageNumbers : true, firstLast : false },
