@@ -6,13 +6,14 @@ gem 'rails', '3.2.5'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # someday I might actually want to use a database for something
-#group :production, :staging do
-#  gem "pg"
-#end
+# ... however heroku assumes that I want pg
+group :production, :staging do
+  gem "pg"
+end
 
-#group :development, :test do
-#  gem 'sqlite3'
-#end
+group :development, :test do
+  gem 'sqlite3'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
