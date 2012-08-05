@@ -46,7 +46,6 @@ class PostsController < ApplicationController
     post = Post.new()
     open(post_filename) {|f|
       post.title = f.readline
-      post.title.gsub!(' ', '&nbsp;')
       post.title = post.title.html_safe
       post.post_date = f.readline.html_safe
       post.content = f.read.html_safe
