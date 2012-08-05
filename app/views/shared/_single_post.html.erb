@@ -1,14 +1,23 @@
 <style>
-  .blogcontent {
-    font-size: 1em;
+  .blogpost {
     padding-bottom: 25px;
   }
+  .blogcontent {
+    font-size: 1em;
+  }
+  .blogdate {
+	  font-weight: bold;
+    font-size: 1.3em;
+	  float: right;
+	  padding-right: 60px;
+  }
 </style>
-<div class="row">
-  <div class="span6"><h2><%= post.title %></h2></div>
-  <div class="span3"><%= post.post_date %></div>
-</div>
-<br />
-<div class="blogcontent">
-<%= post.content %>
+
+<div class="blogpost">
+  <div><h2><%= post.title %></h2></div>
+  <br />
+  <div class="blogcontent">
+  <%= post.content %>
+  </div>
+  <div class="blogdate"><%= post.post_date %></div>
 </div>
