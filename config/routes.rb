@@ -9,7 +9,7 @@ Mapblog::Application.routes.draw do
   match '/backpacking' => 'backpacking#index'
 
   # static views
-  %w{ software games index }.each {|action|
+  %w{ software games index about }.each {|action|
     match action => "static##{action}"
   }
 
