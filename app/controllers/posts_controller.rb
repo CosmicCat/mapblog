@@ -40,6 +40,8 @@ class PostsController < ApplicationController
       post.id = post_no.to_s.html_safe
       post
     }
+
+    @posts.reverse!
   end
 
   def objectify_post(post_filename)
