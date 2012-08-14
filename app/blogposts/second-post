@@ -1,0 +1,26 @@
+Creating this Website: Process and Problems
+2012-08-13
+
+<p>When I started this site, I had a fairly clear picture of what I wanted to do with it. Besides being a clear example of the fact that I can write code, I also wanted to showcase the things that are the most important to me. I wanted to use rails, as I have never worked with it before. My plan was to write the blogging software myself as a learning exercise, rather than pulling in existing projects or gems.</p>
+
+<p>I had several aborted starts. My first idea was to use backbone.js just to become familiar with it. I got it to work, but then quickly realized that the only non-static component of my site was the blog and backbone was huge overkill. I got as far as styling blog posts before I got sick of the blog altogether and moved on to the other static content pages.</p>
+
+<p>I started writing the content in emacs with markup and quickly realized that it was a terrible way to author content. I switched to google docs to worry about content immediately and markup later. The software page was the easiest, as I couldn’t think of any flashy javascript widgets to plop on the page.</p>
+
+<p>I knew that I wanted a photo gallery on my backpacking page. I also knew that I didn’t want to style the heck out of it. I settled on exposure.js after trying out several different jquery photo gallery plugins. Exposure took the least amount of time to set up and I ended up yanking most of the example css with fairly minimal tweaks to make it look nicer. The only thing I really changed from the example was moving the pause/resume control directly below the paging controls rather than having it float to the right on the bottom of the photo gallery. I stored the photo captions in the backpacking controller. Grouping all of the photo data into an XML file probably would have been more preferable.</p>
+
+<p>My initial idea with the games page was to have longer reviews and fewer games. I started reviewing my favorite old games and very quickly realized that I didn’t like writing long game reviews. I enjoyed writing blurbs, however, and this led me to focus on quantity vs quality. It was Samantha Anne’s idea to include a timeline, and I quickly found timeline.js. I like timeline.js because the actual content is generated from a publicly shared google doc. For a busier site one can elect to use a local XML file, but google spreadsheets are easier to maintain.</p>
+
+<p>After the timeline was up I returned to the blog, the biggest piece that I had saved for last which is never a good plan when writing software. I looked at blog gems and found them too complicated and full featured. I looked at Enki as a solution, but it would involve a full checkout and a merge which seemed like too huge of a pain. I finally realized that I didn’t care all that much about the blog and its features. I could always add them later. So I settled on writing a simple controller that would slurp up blog posts from a directory. The title would be on the first line and the date on the second. Super easy and done in an hour.</p>
+
+<p>I have never put up a web site on the internet before. Sure I have created and maintained many sites, but the final steps are always performed by a sysadmin or a devops fellow. I used GoDaddy to buy the domain name. This was a bad idea as GoDaddy are expensive compared to many other options. Furthermore their site and management tools leave much to be desired.</p>
+
+<p>To host the site, I was originally planning on grabbing an AWS instance but others told me that Heroku was super easy to use. Heroku was indeed super easy to use. The difficulty turned out to be in compiling my js and css assets for production. Out of the many features of rails I am the least pleased with the asset pipeline. The documentation was fine for the simple case, but doing anything fancy required extensive web searches and scans of Stack Overflow pages. After the asset problems were resolved the site was up and running but I discovered that heroku does not give you a static ip. This made it extremely difficult to keep matthewalanphillips.net in the url window of the browser, something I feel is necessary. I will need to move the site out of heroku in the near future and give it a static ip to get around these issues.</p>
+
+<p>The site has its problems. Some I will definitely fix. Others I will most likely ignore. Here are the big problems:</p>
+<ul>
+  <li>no favicon - this is an indirect effect of getting GoDaddy to point the nameserver to another domain rather than a static ip. If you were to use the heroku domain name, the favicon would appear. This will be fixed by moving the hosting solution out of heroku.</li>
+  <li>js and css is all inline. There is no place in my code where any custom js/css is pulled out of the html. This is very apparent in the single blog post partial view where the same embedded css will be generated for every singe blog post. It is bad coding but I am not sure that I am willing to wrestle with the asset pipeline any more than I have to right now.</li>
+  <li>I don’t like the way that the image gallery looks when it loads. Some fiddling with javascript is necessary. Or perhaps a placeholder loading image.</li>
+  <li>No unit tests for controllers. Usually I am a big fan, but not this time.</li>
+</ul>
